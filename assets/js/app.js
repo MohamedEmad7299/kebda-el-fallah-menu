@@ -12,7 +12,7 @@ const RESTAURANT_HOTLINES = ["01055400546", "01130355151"];
 const WHATSAPP_ORDER_NUMBER = "01055400546";
 const DEVELOPER_INFO = {
   name: "Mohamed Emad",
-  nameAr: "محمد عماد",
+  nameAr: "Mohamed Emad",
   phone: "+201020766525",
   whatsapp: "201020766525",
   github: "https://github.com/MohamedEmad7299"
@@ -1300,7 +1300,7 @@ window.sendOrderWhatsApp = function() {
   msg += `💰 *الإجمالي المطلوب:* ${total} جنيه\n`;
   if (notes) msg += `📝 *ملاحظات:* ${notes}\n`;
   msg += `------------------------------------\n`;
-  msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير محمد عماد)_`;
+  msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير Mohamed Emad)_`;
 
   const encodedMsg = encodeURIComponent(msg);
   // Send to restaurant WhatsApp (using the active WhatsApp hotline: 01055400546)

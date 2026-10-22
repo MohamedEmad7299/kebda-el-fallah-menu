@@ -1043,10 +1043,12 @@ body[dir="ltr"] .cart-count-badge {
 }
 
 .dev-name {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 900;
   color: #fff;
-  margin-bottom: 0.2rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.5px;
 }
 
 .dev-role {
