@@ -55,7 +55,7 @@ const I18N = {
     servedWithPlatter: "يقدم معهم: عيش + مخلل + طحينة + فلفل + ليمون (إسكندراني أو مشوي)",
     servedWithBran: "يقدم معهم: عيش + مخلل + طحينة + فلفل + ليمون",
     egp: "ج.م",
-    addToOrder: "إضافة للطلب",
+    addToOrder: "أضف للطلب",
     tagSpicy: "سبايسي 🌶️",
     tagPopular: "الأكثر طلباً ⭐",
     tagSpecial: "مميز 👑",
@@ -79,6 +79,7 @@ const I18N = {
     customerNotes: "ملاحظات إضافية (بدون شطة / زيادة ليمون...):",
     totalPrice: "الإجمالي:",
     sendWhatsAppBtn: "إرسال الطلب عبر واتساب 💬",
+    floatOrderCta: "عرض الطلب وإتمام الشراء 💬",
     qrModalTitle: "امسح رمز QR لفتح المنيو",
     qrModalDesc: "وجّه كاميرا هاتفك المحمول إلى الرمز لفتح المنيو الإلكتروني في أي وقت!",
     downloadQR: "تحميل صورة QR",
@@ -119,8 +120,8 @@ const I18N = {
     tabPlatters: "Platters & Meals",
     tabBranLiver: "Bran-Crusted Liver",
     tabSides: "Sides & Extras",
-    fino: "Fino (Baguette)",
-    baladi: "Baladi (Egyptian)",
+    fino: "Fino",
+    baladi: "Baladi",
     small: "Small",
     medium: "Medium",
     large: "Large",
@@ -154,6 +155,7 @@ const I18N = {
     customerNotes: "Special instructions (Extra lemon / No chili...):",
     totalPrice: "Total Amount:",
     sendWhatsAppBtn: "Send Order on WhatsApp 💬",
+    floatOrderCta: "View Order & Checkout 💬",
     qrModalTitle: "Scan QR Code for Digital Menu",
     qrModalDesc: "Point your phone camera at this QR code to access our digital menu instantly!",
     downloadQR: "Download QR Image",
@@ -171,11 +173,12 @@ const I18N = {
   }
 };
 
-// Full Menu Items Dataset
+// Full Menu Items Dataset with Appetizing Visual Icons
 const MENU_DATA = [
   // 🥪 Sandwiches (السندوتشات)
   {
     id: "kebda-alex",
+    icon: "🥩",
     category: "sandwiches",
     nameAr: "كبدة إسكندراني",
     nameEn: "Alexandrian Liver Sandwich",
@@ -189,6 +192,7 @@ const MENU_DATA = [
   },
   {
     id: "kebda-mashwy",
+    icon: "🔥",
     category: "sandwiches",
     nameAr: "كبدة مشوي",
     nameEn: "Grilled Liver Sandwich",
@@ -202,6 +206,7 @@ const MENU_DATA = [
   },
   {
     id: "sodok-alex",
+    icon: "🌭",
     category: "sandwiches",
     nameAr: "سدق إسكندراني",
     nameEn: "Alexandrian Sausage (Sojouk)",
@@ -215,6 +220,7 @@ const MENU_DATA = [
   },
   {
     id: "sodok-mashwy",
+    icon: "🍢",
     category: "sandwiches",
     nameAr: "سدق مشوي",
     nameEn: "Grilled Sausage (Sojouk)",
@@ -228,6 +234,7 @@ const MENU_DATA = [
   },
   {
     id: "klawey",
+    icon: "🫀",
     category: "sandwiches",
     nameAr: "كلاوى",
     nameEn: "Kidneys Sandwich",
@@ -241,8 +248,9 @@ const MENU_DATA = [
   },
   {
     id: "sodok-mexicano-mozzarella",
+    icon: "🧀",
     category: "sandwiches",
-    nameAr: "سدق مكسيكانو جبنة موتزاريلا",
+    nameAr: "سدق مكسيكانو موتزاريلا",
     nameEn: "Mexicano Sausage with Melted Mozzarella",
     descAr: "سدق بخلطة الفلاح الخاصة + فلفل ألوان + جبنة موتزاريلا سايحة وغنية في خبز فينو طازج",
     descEn: "Signature sausage sautéed with colorful bell peppers and smothered with melted mozzarella in fresh baguette",
@@ -253,6 +261,7 @@ const MENU_DATA = [
   },
   {
     id: "sodok-mexicano-rumi",
+    icon: "🥪",
     category: "sandwiches",
     nameAr: "سدق مكسيكانو جبنة رومي",
     nameEn: "Mexicano Sausage with Fried Rumi Cheese",
@@ -267,6 +276,7 @@ const MENU_DATA = [
   // 🍽️ Platters & Meals (الطلبات)
   {
     id: "talab-kebda",
+    icon: "🍲",
     category: "platters",
     nameAr: "طلب كبدة (إسكندراني أو مشوي)",
     nameEn: "Liver Platter (Alex or Grilled)",
@@ -281,6 +291,7 @@ const MENU_DATA = [
   },
   {
     id: "talab-sodok",
+    icon: "🥘",
     category: "platters",
     nameAr: "طلب سدق (إسكندراني أو مشوي)",
     nameEn: "Sausage Platter (Alex or Grilled)",
@@ -295,6 +306,7 @@ const MENU_DATA = [
   },
   {
     id: "talab-klawey",
+    icon: "🍲",
     category: "platters",
     nameAr: "طلب كلاوى",
     nameEn: "Kidneys Platter",
@@ -309,6 +321,7 @@ const MENU_DATA = [
   },
   {
     id: "talab-moshakkal",
+    icon: "👑",
     category: "platters",
     nameAr: "طلب مشكل (كبدة + سدق + كلاوى)",
     nameEn: "Mixed Trio Platter (Liver + Sausage + Kidneys)",
@@ -325,6 +338,7 @@ const MENU_DATA = [
   // 🥖 Bran Liver (كبدة ردة)
   {
     id: "kebda-reda-sandwich",
+    icon: "🥖",
     category: "branLiver",
     nameAr: "سندوتش كبدة ردة",
     nameEn: "Bran-Crusted Fried Liver Sandwich",
@@ -337,6 +351,7 @@ const MENU_DATA = [
   },
   {
     id: "kebda-reda-quarter",
+    icon: "⚖️",
     category: "branLiver",
     nameAr: "ربع كبدة ردة",
     nameEn: "1/4 Kg Bran Fried Liver",
@@ -349,6 +364,7 @@ const MENU_DATA = [
   },
   {
     id: "kebda-reda-half",
+    icon: "⚖️",
     category: "branLiver",
     nameAr: "نص كبدة ردة",
     nameEn: "1/2 Kg Bran Fried Liver",
@@ -361,6 +377,7 @@ const MENU_DATA = [
   },
   {
     id: "kebda-reda-kilo",
+    icon: "🏆",
     category: "branLiver",
     nameAr: "كيلو كبدة ردة",
     nameEn: "1 Kg Bran Fried Liver Feast",
@@ -375,6 +392,7 @@ const MENU_DATA = [
   // 🍟 Sides & Add-ons (الإضافات والمقبلات)
   {
     id: "fries",
+    icon: "🍟",
     category: "sides",
     nameAr: "بطاطس بوم فريت",
     nameEn: "Crispy French Fries (Pommes Frites)",
@@ -387,6 +405,7 @@ const MENU_DATA = [
   },
   {
     id: "tomatoes-spicy",
+    icon: "🍅",
     category: "sides",
     nameAr: "طماطم سبايسي",
     nameEn: "Spicy Marinated Tomatoes",
@@ -399,6 +418,7 @@ const MENU_DATA = [
   },
   {
     id: "green-salad",
+    icon: "🥗",
     category: "sides",
     nameAr: "سلطة خضراء",
     nameEn: "Fresh Egyptian Green Salad",
@@ -411,6 +431,7 @@ const MENU_DATA = [
   },
   {
     id: "tahini-spicy",
+    icon: "🌶️",
     category: "sides",
     nameAr: "طحينة شطة",
     nameEn: "Spicy Hot Tahini",
@@ -423,6 +444,7 @@ const MENU_DATA = [
   },
   {
     id: "tahini-regular",
+    icon: "🥣",
     category: "sides",
     nameAr: "علبة طحينة",
     nameEn: "Classic Creamy Tahini",
@@ -435,6 +457,7 @@ const MENU_DATA = [
   },
   {
     id: "pickles-large",
+    icon: "🥒",
     category: "sides",
     nameAr: "علبة مخلل (ك)",
     nameEn: "Large Mixed Pickles",
@@ -447,6 +470,7 @@ const MENU_DATA = [
   },
   {
     id: "chili-lemon",
+    icon: "🍋",
     category: "sides",
     nameAr: "فلفل وليمون",
     nameEn: "Chili Peppers & Fresh Lemon",
@@ -459,6 +483,7 @@ const MENU_DATA = [
   },
   {
     id: "special-sauce",
+    icon: "🥫",
     category: "sides",
     nameAr: "صلصة الفلاح الخاصة",
     nameEn: "Fallah Secret Sauce",
@@ -471,6 +496,7 @@ const MENU_DATA = [
   },
   {
     id: "extra-bread",
+    icon: "🍞",
     category: "sides",
     nameAr: "عيش إضافي",
     nameEn: "Extra Fresh Bread",
@@ -689,6 +715,7 @@ function initLanguage() {
       renderBranches();
       renderCityFilters();
       renderCartDrawer();
+      updateCartBadge();
     });
   }
 }
@@ -731,15 +758,15 @@ function renderMenu() {
 
   if (filtered.length === 0) {
     menuContainer.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-        <p style="font-size: 1.2rem; font-weight: 700;">${isAr ? "عذراً، لم نجد أصناف مطابقة لبحثك!" : "No items match your search!"}</p>
+      <div style="grid-column: 1/-1; text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+        <p style="font-size: 1.1rem; font-weight: 700;">${isAr ? "عذراً، لم نجد أصناف مطابقة لبحثك!" : "No items match your search!"}</p>
         <button class="nav-btn" style="margin-top: 1rem;" onclick="resetSearch()">${isAr ? "عرض كل الأصناف" : "View All Items"}</button>
       </div>
     `;
     return;
   }
 
-  // Render cards
+  // Render cards with compact, app-like mobile structure
   menuContainer.innerHTML = filtered.map(item => {
     const itemName = isAr ? item.nameAr : item.nameEn;
     const itemDesc = isAr ? item.descAr : item.descEn;
@@ -765,31 +792,33 @@ function renderMenu() {
 
     const optionsHtml = item.options.length > 1 ? `
       <div class="card-options-wrapper">
-        <div class="options-row">
-          <span class="options-label">${isAr ? "اختر النوع / الحجم:" : "Select type/size:"}</span>
-          <div class="price-selectors">
-            ${item.options.map(opt => `
-              <button 
-                class="option-btn ${opt.key === currentOptKey ? "selected" : ""}" 
-                onclick="selectItemOption('${item.id}', '${opt.key}')"
-              >
-                ${isAr ? opt.labelAr : opt.labelEn} (${opt.price} ${dict.egp})
-              </button>
-            `).join("")}
-          </div>
+        <div class="options-segmented">
+          ${item.options.map(opt => `
+            <button 
+              type="button"
+              class="option-pill-btn ${opt.key === currentOptKey ? "selected" : ""}" 
+              onclick="selectItemOption('${item.id}', '${opt.key}')"
+            >
+              <span class="opt-name">${isAr ? opt.labelAr : opt.labelEn}</span>
+              <span class="opt-price">${opt.price} ${dict.egp}</span>
+            </button>
+          `).join("")}
         </div>
       </div>
     ` : "";
 
     return `
       <div class="menu-card" id="card-${item.id}">
-        <div class="card-top">
+        <div class="card-header-row">
+          <div class="item-avatar-icon">${item.icon || "🥩"}</div>
           <div class="card-title-group">
-            <h4>${itemName}</h4>
-            <div class="card-badges">${badgesHtml}</div>
+            <div class="title-with-badge">
+              <h4>${itemName}</h4>
+              <div class="card-badges">${badgesHtml}</div>
+            </div>
+            <p class="card-desc">${itemDesc}</p>
           </div>
         </div>
-        <p class="card-desc">${itemDesc}</p>
         ${optionsHtml}
         <div class="card-footer">
           <div class="price-display">
@@ -1006,10 +1035,36 @@ function saveCart() {
 
 function updateCartBadge() {
   const count = cart.reduce((acc, curr) => acc + curr.qty, 0);
+  const total = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+  const isAr = currentLang === "ar";
+  const currency = I18N[currentLang].egp;
+
+  // Header badges
   document.querySelectorAll(".cart-count-badge").forEach(el => {
     el.textContent = count;
     el.style.display = count > 0 ? "flex" : "none";
   });
+
+  // Mobile Bottom Bar Cart Count
+  const mobCartCount = document.getElementById("mobileBarCartCount");
+  if (mobCartCount) {
+    mobCartCount.textContent = count > 0 ? `(${count})` : "";
+  }
+
+  // Floating Bottom Cart Bar
+  const floatingBar = document.getElementById("floatingCartBar");
+  const floatCountEl = document.getElementById("floatCartCount");
+  const floatTotalEl = document.getElementById("floatCartTotal");
+
+  if (floatingBar) {
+    if (count > 0) {
+      floatingBar.style.display = "flex";
+      if (floatCountEl) floatCountEl.textContent = `${count}`;
+      if (floatTotalEl) floatTotalEl.textContent = `${total} ${currency}`;
+    } else {
+      floatingBar.style.display = "none";
+    }
+  }
 }
 
 function animateCartBtn() {
@@ -1109,7 +1164,7 @@ window.sendOrderWhatsApp = function() {
   msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير محمد عماد)_`;
 
   const encodedMsg = encodeURIComponent(msg);
-  // Send to restaurant WhatsApp (using the first hotline or developer WhatsApp)
+  // Send to restaurant WhatsApp (using the first hotline)
   const targetNumber = RESTAURANT_HOTLINES[0].replace(/^0/, "20");
   const waUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
 
@@ -1137,8 +1192,8 @@ function generateQRCode() {
     if (typeof QRCode !== "undefined") {
       new QRCode(qrContainer, {
         text: targetUrl,
-        width: 210,
-        height: 210,
+        width: 190,
+        height: 190,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
@@ -1146,10 +1201,10 @@ function generateQRCode() {
     } else {
       // Fallback via high-quality SVG/Canvas QR API
       const qrImg = document.createElement("img");
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(targetUrl)}`;
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(targetUrl)}`;
       qrImg.alt = "Kebda El Fallah QR Code";
-      qrImg.width = 220;
-      qrImg.height = 220;
+      qrImg.width = 190;
+      qrImg.height = 190;
       qrContainer.appendChild(qrImg);
     }
   } catch (err) {
