@@ -77,6 +77,9 @@ const I18N = {
     customerPhone: "رقم الموبايل للتواصل:",
     customerBranch: "اختر أقرب فرع إليك:",
     customerNotes: "ملاحظات إضافية (بدون شطة / زيادة ليمون...):",
+    placeholderName: "مثال: أحمد محمد",
+    placeholderPhone: "مثال: 01012345678",
+    placeholderNotes: "مثال: بدون شطة / زيادة ليمون وطحينة",
     totalPrice: "الإجمالي:",
     sendWhatsAppBtn: "إرسال الطلب عبر واتساب 💬",
     floatOrderCta: "عرض الطلب وإتمام الشراء 💬",
@@ -153,6 +156,9 @@ const I18N = {
     customerPhone: "Your Mobile Number:",
     customerBranch: "Select Nearest Branch:",
     customerNotes: "Special instructions (Extra lemon / No chili...):",
+    placeholderName: "e.g. Ahmed Mohamed",
+    placeholderPhone: "e.g. 01012345678",
+    placeholderNotes: "e.g. Extra lemon / No spicy chili",
     totalPrice: "Total Amount:",
     sendWhatsAppBtn: "Send Order on WhatsApp 💬",
     floatOrderCta: "View Order & Checkout 💬",
@@ -711,6 +717,7 @@ function initLanguage() {
       document.documentElement.lang = currentLang;
       document.body.dir = currentLang === "ar" ? "rtl" : "ltr";
       updateUIStrings();
+      populateBranchSelect();
       renderMenu();
       renderBranches();
       renderCityFilters();

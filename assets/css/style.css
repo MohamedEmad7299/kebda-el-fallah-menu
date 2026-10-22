@@ -1509,22 +1509,71 @@ body[dir="ltr"] .cart-count-badge {
   font-weight: 600;
 }
 
-.order-input,
-.order-select {
+/* Custom Select Wrapper & Inputs */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.order-input {
   width: 100%;
   background: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 0.6rem 0.75rem;
+  padding: 0.65rem 0.85rem;
   color: #fff;
   font-family: inherit;
   font-size: 0.88rem;
+  transition: var(--transition);
 }
 
-.order-input:focus,
+.order-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+  outline: none;
+}
+
+.order-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
 .order-select:focus {
   border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
   outline: none;
+}
+
+.order-select option {
+  background-color: #181b22;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+/* Custom Dropdown Chevron Icon */
+.custom-select-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  width: 20px;
+  height: 20px;
 }
 
 .cart-total-row {
@@ -1871,4 +1920,177 @@ body[dir="ltr"] .cart-count-badge {
   .mobile-bottom-bar {
     display: block;
   }
+}
+
+/* ==========================================================================
+   METICULOUS LTR & RTL REVISION
+   ========================================================================== */
+
+/* ------------------- LTR (English) ------------------- */
+body[dir="ltr"] {
+  font-family: var(--font-en);
+  text-align: left;
+}
+
+body[dir="ltr"] .brand-text {
+  text-align: left;
+}
+
+body[dir="ltr"] .cart-count-badge {
+  right: -4px;
+  left: auto;
+}
+
+body[dir="ltr"] .search-icon {
+  left: 1rem;
+  right: auto;
+}
+
+body[dir="ltr"] .search-input {
+  padding-left: 2.85rem;
+  padding-right: 1.25rem;
+  text-align: left;
+}
+
+body[dir="ltr"] .card-desc,
+body[dir="ltr"] .title-with-badge h4 {
+  text-align: left;
+}
+
+body[dir="ltr"] .branch-address,
+body[dir="ltr"] .branch-title {
+  text-align: left;
+}
+
+body[dir="ltr"] .order-form-label,
+body[dir="ltr"] .order-input {
+  text-align: left;
+}
+
+body[dir="ltr"] .order-select {
+  text-align: left;
+  padding-left: 0.85rem;
+  padding-right: 2.85rem; /* Generous breathing space so text never hits the arrow */
+}
+
+body[dir="ltr"] .custom-select-arrow {
+  right: 14px; /* Perfectly positioned 14px away from right border */
+  left: auto;
+}
+
+body[dir="ltr"] .cart-item-info {
+  text-align: left;
+}
+
+body[dir="ltr"] .cart-item-price {
+  text-align: right;
+}
+
+body[dir="ltr"] .floating-cart-bar svg {
+  transform: rotate(0deg); /* Arrow points right */
+}
+
+body[dir="ltr"] .footer-phone-link:hover {
+  transform: translateX(4px);
+}
+
+body[dir="ltr"] .footer-col h3::after {
+  left: 0;
+  right: auto;
+}
+
+body[dir="ltr"] .footer-brand p,
+body[dir="ltr"] .footer-links {
+  text-align: left;
+}
+
+/* ------------------- RTL (Arabic) ------------------- */
+body[dir="rtl"] {
+  font-family: var(--font-ar);
+  text-align: right;
+}
+
+body[dir="rtl"] .brand-text {
+  text-align: right;
+}
+
+body[dir="rtl"] .cart-count-badge {
+  left: -4px;
+  right: auto;
+}
+
+body[dir="rtl"] .search-icon {
+  right: 1rem;
+  left: auto;
+}
+
+body[dir="rtl"] .search-input {
+  padding-right: 2.85rem;
+  padding-left: 1.25rem;
+  text-align: right;
+}
+
+body[dir="rtl"] .card-desc,
+body[dir="rtl"] .title-with-badge h4 {
+  text-align: right;
+}
+
+body[dir="rtl"] .branch-address,
+body[dir="rtl"] .branch-title {
+  text-align: right;
+}
+
+body[dir="rtl"] .order-form-label,
+body[dir="rtl"] .order-input {
+  text-align: right;
+}
+
+body[dir="rtl"] .order-select {
+  text-align: right;
+  padding-right: 0.85rem;
+  padding-left: 2.85rem; /* Generous breathing space so text never hits the arrow */
+}
+
+body[dir="rtl"] .custom-select-arrow {
+  left: 14px; /* Perfectly positioned 14px away from left border */
+  right: auto;
+}
+
+body[dir="rtl"] .cart-item-info {
+  text-align: right;
+}
+
+body[dir="rtl"] .cart-item-price {
+  text-align: left;
+}
+
+body[dir="rtl"] .floating-cart-bar svg {
+  transform: rotate(180deg); /* Arrow points left */
+}
+
+body[dir="rtl"] .footer-phone-link:hover {
+  transform: translateX(-4px);
+}
+
+body[dir="rtl"] .footer-col h3::after {
+  right: 0;
+  left: auto;
+}
+
+body[dir="rtl"] .footer-brand p,
+body[dir="rtl"] .footer-links {
+  text-align: right;
+}
+
+/* Phone numbers & Bidi preservation */
+.hotline-btn span,
+.footer-phone-link span,
+.dev-pill.phone span,
+.cart-total-row span.amount,
+.floating-cart-total,
+.price-display,
+input[type="tel"] {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  display: inline-block;
 }
