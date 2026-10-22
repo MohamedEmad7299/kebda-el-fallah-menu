@@ -1592,6 +1592,229 @@ body[dir="ltr"] .cart-count-badge {
   height: 20px;
 }
 
+/* Custom Branch Trigger Button */
+.custom-branch-trigger {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: inherit;
+  box-sizing: border-box;
+}
+
+.custom-branch-trigger:hover,
+.custom-branch-trigger:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+  outline: none;
+}
+
+.branch-trigger-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.branch-trigger-pin {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.branch-trigger-text {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.88rem;
+}
+
+/* Custom Branch Picker Modal & Sheet */
+.branch-picker-modal-overlay {
+  z-index: 1100; /* Stacks cleanly over cartModal (1000) */
+}
+
+.branch-picker-card {
+  max-width: 500px;
+}
+
+.branch-picker-body {
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.branch-picker-search {
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.branch-picker-search svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.branch-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+.branch-search-input:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.branch-radio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 52vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Branch Radio Row: Radio Button & Adjacent Text */
+.branch-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.branch-radio-item:hover {
+  background: rgba(212, 160, 23, 0.06);
+  border-color: rgba(212, 160, 23, 0.35);
+  transform: translateY(-1px);
+}
+
+.branch-radio-item.selected {
+  background: rgba(212, 160, 23, 0.14);
+  border-color: var(--gold);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.branch-radio-circle {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.35);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-inner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.branch-radio-item.selected .branch-radio-circle {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+}
+
+.branch-radio-item.selected .radio-inner-dot {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.branch-radio-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.branch-radio-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.branch-radio-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  line-height: 1.35;
+}
+
+.branch-radio-item.selected .branch-radio-name {
+  color: var(--gold-light);
+}
+
+.branch-featured-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--gold-light);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.branch-radio-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.branch-radio-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+}
+
+.branch-radio-empty span {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
 .cart-total-row {
   display: flex;
   align-items: center;
@@ -2012,6 +2235,42 @@ body[dir="ltr"] .order-select {
   padding-right: 2.85rem; /* Generous breathing space so text never hits the arrow */
 }
 
+body[dir="ltr"] .custom-branch-trigger {
+  text-align: left;
+  padding-left: 0.85rem;
+  padding-right: 2.85rem;
+}
+
+body[dir="ltr"] .branch-trigger-main {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+body[dir="ltr"] .branch-picker-search svg {
+  left: 12px;
+  right: auto;
+}
+
+body[dir="ltr"] .branch-search-input {
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+  text-align: left;
+}
+
+body[dir="ltr"] .branch-radio-item {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+body[dir="ltr"] .branch-radio-info {
+  text-align: left;
+}
+
+body[dir="ltr"] .branch-radio-name-row {
+  justify-content: flex-start;
+}
+
 body[dir="ltr"] .custom-select-arrow {
   right: 14px; /* Perfectly positioned 14px away from right border */
   left: auto;
@@ -2088,6 +2347,42 @@ body[dir="rtl"] .order-select {
   text-align: right;
   padding-right: 0.85rem;
   padding-left: 2.85rem; /* Generous breathing space so text never hits the arrow */
+}
+
+body[dir="rtl"] .custom-branch-trigger {
+  text-align: right;
+  padding-right: 0.85rem;
+  padding-left: 2.85rem;
+}
+
+body[dir="rtl"] .branch-trigger-main {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+body[dir="rtl"] .branch-picker-search svg {
+  right: 12px;
+  left: auto;
+}
+
+body[dir="rtl"] .branch-search-input {
+  padding-right: 2.5rem;
+  padding-left: 1rem;
+  text-align: right;
+}
+
+body[dir="rtl"] .branch-radio-item {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+body[dir="rtl"] .branch-radio-info {
+  text-align: right;
+}
+
+body[dir="rtl"] .branch-radio-name-row {
+  justify-content: flex-start;
 }
 
 body[dir="rtl"] .custom-select-arrow {

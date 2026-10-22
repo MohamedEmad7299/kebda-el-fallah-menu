@@ -96,7 +96,11 @@ const I18N = {
     devAvailable: "متاح لتطوير المواقع وتطبيقات الموبايل",
     callDev: "اتصال بالمطور",
     chatWhatsApp: "مراسلة واتساب",
-    footerAbout: "كبدة الفلاح - الاسم الرائد في تقديم الكبدة والسدق الإسكندراني الطازج بأعلى معايير النظافة والجودة."
+    footerAbout: "كبدة الفلاح - الاسم الرائد في تقديم الكبدة والسدق الإسكندراني الطازج بأعلى معايير النظافة والجودة.",
+    selectBranchTitle: "اختر الفرع الأقرب إليك",
+    searchBranchPlaceholder: "ابحث عن الفرع أو المحافظة...",
+    noBranchesFound: "لا توجد فروع تطابق بحثك",
+    featuredBranchBadge: "فرع مميز ⭐"
   },
   en: {
     brandName: "Kebda El Fallah",
@@ -175,7 +179,11 @@ const I18N = {
     devAvailable: "Available for professional web & mobile apps",
     callDev: "Call Developer",
     chatWhatsApp: "Chat on WhatsApp",
-    footerAbout: "Kebda El Fallah - Egypt's premier destination for authentic Alexandrian street food, liver, and sausage crafted with freshness and pride."
+    footerAbout: "Kebda El Fallah - Egypt's premier destination for authentic Alexandrian street food, liver, and sausage crafted with freshness and pride.",
+    selectBranchTitle: "Select Your Nearest Branch",
+    searchBranchPlaceholder: "Search branch or city...",
+    noBranchesFound: "No branches match your search",
+    featuredBranchBadge: "Featured ⭐"
   }
 };
 
@@ -682,6 +690,7 @@ let currentCityFilter = "all";
 let searchQuery = "";
 let selectedItemOptions = {}; // { itemId: selectedOptionKey }
 let cart = JSON.parse(localStorage.getItem("kebda_cart") || "[]");
+let selectedBranchId = "sohag-balyana";
 
 // Initialize Default Options for items
 MENU_DATA.forEach(item => {
@@ -997,17 +1006,122 @@ function initCart() {
   populateBranchSelect();
 }
 
+// Branch Selection & Custom Picker Logic
 function populateBranchSelect() {
   const branchSelect = document.getElementById("orderBranchSelect");
-  if (!branchSelect) return;
+  const displayLabel = document.getElementById("selectedBranchDisplay");
+  const isAr = currentLang === "ar";
+
+  if (!BRANCHES_DATA.some(b => b.id === selectedBranchId)) {
+    selectedBranchId = BRANCHES_DATA[0].id;
+  }
+  const currentBranch = BRANCHES_DATA.find(b => b.id === selectedBranchId) || BRANCHES_DATA[0];
+
+  if (branchSelect) {
+    branchSelect.innerHTML = BRANCHES_DATA.map(b => `
+      <option value="${isAr ? b.nameAr : b.nameEn}" ${b.id === selectedBranchId ? "selected" : ""}>
+        ${isAr ? b.nameAr : b.nameEn}
+      </option>
+    `).join("");
+    branchSelect.value = isAr ? currentBranch.nameAr : currentBranch.nameEn;
+  }
+
+  if (displayLabel) {
+    displayLabel.textContent = isAr ? currentBranch.nameAr : currentBranch.nameEn;
+  }
+
+  renderBranchPickerList();
+}
+
+function renderBranchPickerList(filterText = "") {
+  const radioList = document.getElementById("branchRadioList");
+  if (!radioList) return;
 
   const isAr = currentLang === "ar";
-  branchSelect.innerHTML = BRANCHES_DATA.map(b => `
-    <option value="${isAr ? b.nameAr : b.nameEn}">
-      ${isAr ? b.nameAr : b.nameEn}
-    </option>
-  `).join("");
+  const dict = I18N[currentLang];
+  const query = (filterText || "").trim().toLowerCase();
+
+  const filtered = BRANCHES_DATA.filter(b => {
+    if (!query) return true;
+    const name = (isAr ? b.nameAr : b.nameEn).toLowerCase();
+    const city = (isAr ? b.cityNameAr : b.cityNameEn).toLowerCase();
+    const address = (isAr ? b.addressAr : b.addressEn).toLowerCase();
+    return name.includes(query) || city.includes(query) || address.includes(query);
+  });
+
+  if (filtered.length === 0) {
+    radioList.innerHTML = `
+      <div class="branch-radio-empty">
+        <span>🔍</span>
+        <p>${dict.noBranchesFound || "لا توجد فروع تطابق بحثك"}</p>
+      </div>
+    `;
+    return;
+  }
+
+  radioList.innerHTML = filtered.map(b => {
+    const isSelected = b.id === selectedBranchId;
+    const name = isAr ? b.nameAr : b.nameEn;
+    const address = isAr ? b.addressAr : b.addressEn;
+    const city = isAr ? b.cityNameAr : b.cityNameEn;
+
+    return `
+      <div 
+        class="branch-radio-item ${isSelected ? "selected" : ""}" 
+        onclick="selectBranchOption('${b.id}')"
+        role="radio"
+        aria-checked="${isSelected}"
+        tabindex="0"
+        onkeydown="if(event.key==='Enter'||event.key===' ')selectBranchOption('${b.id}')"
+      >
+        <div class="branch-radio-circle" aria-hidden="true">
+          <span class="radio-inner-dot"></span>
+        </div>
+        <div class="branch-radio-info">
+          <div class="branch-radio-name-row">
+            <span class="branch-radio-name">${name}</span>
+            ${b.featured ? `<span class="branch-featured-badge">${dict.featuredBranchBadge}</span>` : ""}
+          </div>
+          <span class="branch-radio-meta">📍 ${city} - ${address}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
 }
+
+window.selectBranchOption = function(branchId) {
+  selectedBranchId = branchId;
+  const isAr = currentLang === "ar";
+  const branch = BRANCHES_DATA.find(b => b.id === branchId);
+  if (!branch) return;
+
+  const branchSelect = document.getElementById("orderBranchSelect");
+  if (branchSelect) {
+    branchSelect.value = isAr ? branch.nameAr : branch.nameEn;
+  }
+
+  const displayLabel = document.getElementById("selectedBranchDisplay");
+  if (displayLabel) {
+    displayLabel.textContent = isAr ? branch.nameAr : branch.nameEn;
+  }
+
+  renderBranchPickerList();
+
+  setTimeout(() => {
+    closeModal("branchPickerModal");
+  }, 140);
+};
+
+window.openBranchPicker = function() {
+  const searchInput = document.getElementById("branchSearchInput");
+  if (searchInput) searchInput.value = "";
+  renderBranchPickerList();
+  openModal("branchPickerModal");
+};
+
+window.filterBranchPickerList = function(text) {
+  renderBranchPickerList(text);
+};
 
 window.addToCart = function(itemId) {
   const item = MENU_DATA.find(i => i.id === itemId);
@@ -1155,7 +1269,11 @@ window.sendOrderWhatsApp = function() {
 
   const customerName = nameInput ? nameInput.value.trim() : "";
   const customerPhone = phoneInput ? phoneInput.value.trim() : "";
-  const branch = branchSelect ? branchSelect.value : "";
+  let branch = branchSelect ? branchSelect.value : "";
+  if (!branch && selectedBranchId) {
+    const cur = BRANCHES_DATA.find(b => b.id === selectedBranchId);
+    if (cur) branch = currentLang === "ar" ? cur.nameAr : cur.nameEn;
+  }
   const notes = notesInput ? notesInput.value.trim() : "";
 
   const isAr = currentLang === "ar";
@@ -1333,6 +1451,9 @@ window.openModal = function(modalId) {
     }
     if (modalId === "qrModal") {
       generateQRCode();
+    }
+    if (modalId === "branchPickerModal") {
+      renderBranchPickerList();
     }
     modal.classList.add("open");
   }
