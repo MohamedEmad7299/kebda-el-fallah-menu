@@ -1328,11 +1328,8 @@ window.sendOrderWhatsApp = function() {
   msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير Mohamed Emad)_`;
 
   const encodedMsg = encodeURIComponent(msg);
-  // Send to WhatsApp of selected branch
-  let targetPhone = branchObj.whatsapp || branchObj.phone || WHATSAPP_ORDER_NUMBER;
-  if (!targetPhone || targetPhone.includes("01130355151")) {
-    targetPhone = WHATSAPP_ORDER_NUMBER;
-  }
+  // Send directly to the phone number of the selected branch
+  const targetPhone = branchObj.whatsapp || branchObj.phone || "";
   const targetNumber = targetPhone.replace(/\D/g, "").replace(/^0/, "20");
   const waUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
 
