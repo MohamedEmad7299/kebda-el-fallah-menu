@@ -96,8 +96,15 @@ const I18N = {
     developedBy: "تصميم وتطوير بواسطة",
     devAvailable: "متاح لتطوير المواقع وتطبيقات الموبايل",
     callDev: "اتصال بالمطور",
-    chatWhatsApp: "مراسلة واتساب",
+    chatWhatsApp: "واتساب المطور",
     footerAbout: "كبدة الفلاح - الاسم الرائد في تقديم الكبدة والسدق الإسكندراني الطازج بأعلى معايير النظافة والجودة.",
+    footerBrandTitle: "كبدة <span>الفلاح</span> 💎",
+    footerBranchSohag: "سوهاج (البلينا والمحافظة)",
+    footerBranchCairo: "القاهرة (شيراتون، الألف مسكن، جولف سيتي)",
+    footerBranchAlex: "الأسكندرية (محطة الرمل، شاطئ النخيل)",
+    footerBranchDelta: "دمياط، 6 أكتوبر، شبين الكوم، بنها",
+    footerCopyright: "&copy; 2026 كبدة الفلاح - جميع الحقوق محفوظة | تصميم وتطوير <a href=\"tel:+201020766525\" style=\"color: var(--gold-light); font-weight: 700;\">Mohamed Emad</a> (+201020766525)",
+    flyerBannerDesc: "يمكنك تصفح صور المنشور الأصلي بجميع فروعه وأسعاره كاملة بدقة فائقة",
     selectBranchTitle: "اختر الفرع الأقرب إليك",
     searchBranchPlaceholder: "ابحث عن الفرع أو المحافظة...",
     noBranchesFound: "لا توجد فروع تطابق بحثك",
@@ -181,6 +188,13 @@ const I18N = {
     callDev: "Call Developer",
     chatWhatsApp: "Chat on WhatsApp",
     footerAbout: "Kebda El Fallah - Egypt's premier destination for authentic Alexandrian street food, liver, and sausage crafted with freshness and pride.",
+    footerBrandTitle: "Kebda <span>El Fallah</span> 💎",
+    footerBranchSohag: "Sohag (El Balyana & Sohag City)",
+    footerBranchCairo: "Cairo (Sheraton, Alf Maskan, Golf City)",
+    footerBranchAlex: "Alexandria (Raml Station, Palm Beach)",
+    footerBranchDelta: "Damietta, 6th of October, Shebin El Kom, Banha",
+    footerCopyright: "&copy; 2026 Kebda El Fallah - All Rights Reserved | Designed & Developed by <a href=\"tel:+201020766525\" style=\"color: var(--gold-light); font-weight: 700;\">Mohamed Emad</a> (+201020766525)",
+    flyerBannerDesc: "Browse high-resolution scans of the official printed brochure with all branches & pricing",
     selectBranchTitle: "Select Your Nearest Branch",
     searchBranchPlaceholder: "Search branch or city...",
     noBranchesFound: "No branches match your search",
@@ -730,6 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Language Setup
 function initLanguage() {
   document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
   document.body.dir = currentLang === "ar" ? "rtl" : "ltr";
   
   const langToggleBtn = document.getElementById("langToggleBtn");
@@ -738,6 +753,7 @@ function initLanguage() {
       currentLang = currentLang === "ar" ? "en" : "ar";
       localStorage.setItem("kebda_lang", currentLang);
       document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
       document.body.dir = currentLang === "ar" ? "rtl" : "ltr";
       updateUIStrings();
       populateBranchSelect();
@@ -746,6 +762,7 @@ function initLanguage() {
       renderCityFilters();
       renderCartDrawer();
       updateCartBadge();
+      updateHeaderOffset();
     });
   }
 }
@@ -757,6 +774,8 @@ function updateUIStrings() {
     if (dict[key]) {
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.placeholder = dict[key];
+      } else if (el.getAttribute("data-i18n-html") === "true" || dict[key].includes("<")) {
+        el.innerHTML = dict[key];
       } else {
         el.textContent = dict[key];
       }

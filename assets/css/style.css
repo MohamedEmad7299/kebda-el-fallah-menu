@@ -2299,9 +2299,47 @@ body[dir="ltr"] .footer-col h3::after {
   right: auto;
 }
 
+body[dir="ltr"] .footer-top,
+body[dir="ltr"] .footer-brand,
+body[dir="ltr"] .footer-brand h2,
 body[dir="ltr"] .footer-brand p,
+body[dir="ltr"] .footer-col,
+body[dir="ltr"] .footer-col h3,
+body[dir="ltr"] .footer-links,
+body[dir="ltr"] .footer-links li,
+body[dir="ltr"] .footer-links a,
+body[dir="ltr"] .footer-hotlines {
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+body[dir="ltr"] .footer-hotlines {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
 body[dir="ltr"] .footer-links {
-  text-align: left;
+  align-items: flex-start !important;
+}
+
+body[dir="ltr"] .footer-phone-link {
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+}
+
+body[dir="ltr"] .flyer-info,
+body[dir="ltr"] .flyer-info h3,
+body[dir="ltr"] .flyer-info p {
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+body[dir="ltr"] .alert-text,
+body[dir="ltr"] .alert-text h3,
+body[dir="ltr"] .alert-text p {
+  text-align: left !important;
+  direction: ltr !important;
 }
 
 /* ------------------- RTL (Arabic) ------------------- */
@@ -2413,9 +2451,47 @@ body[dir="rtl"] .footer-col h3::after {
   left: auto;
 }
 
+body[dir="rtl"] .footer-top,
+body[dir="rtl"] .footer-brand,
+body[dir="rtl"] .footer-brand h2,
 body[dir="rtl"] .footer-brand p,
+body[dir="rtl"] .footer-col,
+body[dir="rtl"] .footer-col h3,
+body[dir="rtl"] .footer-links,
+body[dir="rtl"] .footer-links li,
+body[dir="rtl"] .footer-links a,
+body[dir="rtl"] .footer-hotlines {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+body[dir="rtl"] .footer-hotlines {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
 body[dir="rtl"] .footer-links {
-  text-align: right;
+  align-items: flex-start !important;
+}
+
+body[dir="rtl"] .footer-phone-link {
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .flyer-info,
+body[dir="rtl"] .flyer-info h3,
+body[dir="rtl"] .flyer-info p {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+body[dir="rtl"] .alert-text,
+body[dir="rtl"] .alert-text h3,
+body[dir="rtl"] .alert-text p {
+  text-align: right !important;
+  direction: rtl !important;
 }
 
 /* Phone numbers & Bidi preservation */
