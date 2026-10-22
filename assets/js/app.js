@@ -8,7 +8,8 @@
 const GITHUB_PAGES_URL = "https://mohamedemad7299.github.io/kebda-el-fallah-menu/";
 
 // Primary Hotline & WhatsApp numbers
-const RESTAURANT_HOTLINES = ["01130355151", "01055400546"];
+const RESTAURANT_HOTLINES = ["01055400546", "01130355151"];
+const WHATSAPP_ORDER_NUMBER = "01055400546";
 const DEVELOPER_INFO = {
   name: "Mohamed Emad",
   nameAr: "محمد عماد",
@@ -1302,8 +1303,8 @@ window.sendOrderWhatsApp = function() {
   msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير محمد عماد)_`;
 
   const encodedMsg = encodeURIComponent(msg);
-  // Send to restaurant WhatsApp (using the first hotline)
-  const targetNumber = RESTAURANT_HOTLINES[0].replace(/^0/, "20");
+  // Send to restaurant WhatsApp (using the active WhatsApp hotline: 01055400546)
+  const targetNumber = WHATSAPP_ORDER_NUMBER.replace(/^0/, "20");
   const waUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
 
   window.open(waUrl, "_blank");
