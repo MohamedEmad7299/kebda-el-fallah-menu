@@ -550,7 +550,8 @@ const BRANCHES_DATA = [
     addressAr: "البلينا - بجوار البنك الأهلى المصري - أسفل عيادات زغلول",
     addressEn: "El Balyana, next to National Bank of Egypt (NBE), below Zaghloul Clinics",
     mapQuery: "البنك الاهلي المصري البلينا سوهاج",
-    phone: "01130355151",
+    phone: "01055400546",
+    whatsapp: "01055400546",
     featured: true
   },
   {
@@ -1289,14 +1290,19 @@ window.sendOrderWhatsApp = function() {
 
   const customerName = nameInput ? nameInput.value.trim() : "";
   const customerPhone = phoneInput ? phoneInput.value.trim() : "";
-  let branch = branchSelect ? branchSelect.value : "";
-  if (!branch && selectedBranchId) {
-    const cur = BRANCHES_DATA.find(b => b.id === selectedBranchId);
-    if (cur) branch = currentLang === "ar" ? cur.nameAr : cur.nameEn;
+  // Resolve the selected branch object
+  let branchObj = BRANCHES_DATA.find(b => b.id === selectedBranchId);
+  if (!branchObj && branchSelect && branchSelect.value) {
+    branchObj = BRANCHES_DATA.find(b => b.nameAr === branchSelect.value || b.nameEn === branchSelect.value);
   }
-  const notes = notesInput ? notesInput.value.trim() : "";
+  if (!branchObj) {
+    branchObj = BRANCHES_DATA[0];
+  }
 
   const isAr = currentLang === "ar";
+  const branch = isAr ? branchObj.nameAr : branchObj.nameEn;
+  const notes = notesInput ? notesInput.value.trim() : "";
+
   let total = 0;
 
   let msg = `*طلب جديد من كبدة الفلاح - المنيو الإلكتروني* 💎\n`;
@@ -1322,8 +1328,12 @@ window.sendOrderWhatsApp = function() {
   msg += `_تم إنشاء الطلب عبر المنيو الإلكتروني (تطوير Mohamed Emad)_`;
 
   const encodedMsg = encodeURIComponent(msg);
-  // Send to restaurant WhatsApp (using the active WhatsApp hotline: 01055400546)
-  const targetNumber = WHATSAPP_ORDER_NUMBER.replace(/^0/, "20");
+  // Send to WhatsApp of selected branch
+  let targetPhone = branchObj.whatsapp || branchObj.phone || WHATSAPP_ORDER_NUMBER;
+  if (!targetPhone || targetPhone.includes("01130355151")) {
+    targetPhone = WHATSAPP_ORDER_NUMBER;
+  }
+  const targetNumber = targetPhone.replace(/\D/g, "").replace(/^0/, "20");
   const waUrl = `https://wa.me/${targetNumber}?text=${encodedMsg}`;
 
   window.open(waUrl, "_blank");
