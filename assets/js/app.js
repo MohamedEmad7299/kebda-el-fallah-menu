@@ -690,6 +690,18 @@ MENU_DATA.forEach(item => {
   }
 });
 
+// Header Offset Synchronization
+function updateHeaderOffset() {
+  const header = document.querySelector(".site-header");
+  const tabs = document.querySelector(".category-tabs");
+  if (header && tabs && window.innerWidth <= 768) {
+    const h = header.offsetHeight;
+    tabs.style.top = `${h}px`;
+  }
+}
+window.addEventListener("resize", updateHeaderOffset);
+window.addEventListener("orientationchange", updateHeaderOffset);
+
 // DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
   initLanguage();
@@ -702,6 +714,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initModals();
   generateQRCode();
   updateUIStrings();
+  updateHeaderOffset();
 });
 
 // Language Setup

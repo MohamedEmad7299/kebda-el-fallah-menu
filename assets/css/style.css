@@ -120,11 +120,10 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  min-height: 68px;
-  background: rgba(15, 17, 21, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  min-height: 76px;
+  background: #0c0e12;
   border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
   overflow: visible;
   transition: var(--transition);
 }
@@ -133,8 +132,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 1.25rem;
-  min-height: 68px;
+  padding: 0.75rem 1.25rem;
+  min-height: 76px;
   max-width: 1200px;
   margin: 0 auto;
   overflow: visible;
@@ -147,8 +146,8 @@ img {
 }
 
 .brand-diamond {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
   border-radius: 9px;
   display: flex;
@@ -157,20 +156,29 @@ img {
   box-shadow: 0 0 12px var(--gold-glow);
   transform: rotate(45deg);
   margin: 4px;
+  flex-shrink: 0;
   transition: var(--transition);
 }
 
 .brand-diamond span {
   transform: rotate(-45deg);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .brand-text h1 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.5px;
-  line-height: 1.2;
+  line-height: 1.15;
+  margin: 0;
+  padding: 0;
 }
 
 .brand-text h1 span {
@@ -180,7 +188,11 @@ img {
 .brand-text p {
   font-size: 0.74rem;
   color: var(--gold);
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 3px 0 0 0;
+  padding: 0;
+  white-space: nowrap;
 }
 
 .nav-actions {
@@ -1650,27 +1662,28 @@ body[dir="ltr"] .cart-count-badge {
 
   /* Header: Suitable Comfortable Height (No Cutting Off) */
   .site-header {
-    min-height: 68px;
+    min-height: 76px;
     height: auto;
+    background: #0c0e12;
     overflow: visible;
   }
 
   .nav-container {
-    padding: 0.55rem 0.85rem;
-    min-height: 68px;
+    padding: 0.7rem 0.85rem;
+    min-height: 76px;
     align-items: center;
     overflow: visible;
   }
 
   .brand-diamond {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     margin: 2px 4px;
     flex-shrink: 0;
   }
 
   .brand-diamond span {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .brand-text {
@@ -1680,17 +1693,20 @@ body[dir="ltr"] .cart-count-badge {
   }
 
   .brand-text h1 {
-    font-size: 1.1rem;
-    line-height: 1.2;
+    font-size: 1.08rem;
+    line-height: 1.15;
     margin: 0;
+    padding: 0;
   }
 
   .brand-text p {
     font-size: 0.72rem;
-    line-height: 1.2;
+    line-height: 1.15;
     color: var(--gold);
     font-weight: 700;
-    margin-top: 2px;
+    margin: 3px 0 0 0;
+    padding: 0;
+    white-space: nowrap;
   }
 
   .site-header .nav-btn span.label {
@@ -1802,7 +1818,7 @@ body[dir="ltr"] .cart-count-badge {
   /* Sticky Horizontal Category Bar */
   .category-tabs {
     position: sticky;
-    top: 68px;
+    top: 76px;
     z-index: 85;
     background: rgba(15, 17, 21, 0.96);
     backdrop-filter: blur(14px);
