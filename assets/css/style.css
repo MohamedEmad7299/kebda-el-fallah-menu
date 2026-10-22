@@ -120,10 +120,12 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 68px;
   background: rgba(15, 17, 21, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
+  overflow: visible;
   transition: var(--transition);
 }
 
@@ -131,9 +133,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.25rem;
+  padding: 0.65rem 1.25rem;
+  min-height: 68px;
   max-width: 1200px;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .brand-wrapper {
@@ -1644,30 +1648,49 @@ body[dir="ltr"] .cart-count-badge {
     padding: 0 0.85rem;
   }
 
-  /* Header compact */
+  /* Header: Suitable Comfortable Height (No Cutting Off) */
   .site-header {
-    height: 56px;
+    min-height: 68px;
+    height: auto;
+    overflow: visible;
   }
 
   .nav-container {
-    padding: 0.5rem 0.85rem;
+    padding: 0.55rem 0.85rem;
+    min-height: 68px;
+    align-items: center;
+    overflow: visible;
   }
 
   .brand-diamond {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
+    margin: 2px 4px;
+    flex-shrink: 0;
   }
 
   .brand-diamond span {
-    font-size: 0.95rem;
+    font-size: 1rem;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .brand-text h1 {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    margin: 0;
   }
 
   .brand-text p {
-    font-size: 0.65rem;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    color: var(--gold);
+    font-weight: 700;
+    margin-top: 2px;
   }
 
   .site-header .nav-btn span.label {
@@ -1779,7 +1802,7 @@ body[dir="ltr"] .cart-count-badge {
   /* Sticky Horizontal Category Bar */
   .category-tabs {
     position: sticky;
-    top: 56px;
+    top: 68px;
     z-index: 85;
     background: rgba(15, 17, 21, 0.96);
     backdrop-filter: blur(14px);
